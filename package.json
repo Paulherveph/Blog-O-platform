@@ -1,0 +1,38 @@
+{
+  "name": "blogging-platform",
+  "version": "1.0.0",
+  "description": "Blog-O is a feature-rich blogging platform built with modern web technologies, allowing users to create, manage, and share blog posts with a clean and intuitive interface.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "prod": "cross-env NODE_ENV=production node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paulherveph/Blogging-Platform"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Paulherveph/Blogging-Platform/issues"
+  },
+  "homepage": "https://github.com/Paulherveph/Blogging-Platform#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^5.1.0",
+    "express-fileupload": "^1.5.1",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "sharp": "^0.34.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.3"
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Blogging Platform</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="CSS/profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="links-container">
+            <!-- Navigation will be dynamically inserted by nav.js -->
+        </div>
+    </nav>
+
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-image-container">
+                <img src="/img/avatar.jpeg" class="profile-image" id="profile-image" alt="Profile Image">
+                <label for="profile-image-input" class="image-upload-label">
+                    <img src="/img/upload.svg" alt="Upload" class="upload-icon">
+                </label>
+                <input type="file" accept="image/*" id="profile-image-input" style="display: none;">
+            </div>
+            
+            <div class="profile-info">
+                <div class="profile-field">
+                    <label for="display-name">Display Name</label>
+                    <input type="text" id="display-name" placeholder="Enter your display name">
+                </div>
+                <div class="profile-field">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" placeholder="Tell us about yourself"></textarea>
+                </div>
+                <button id="save-profile">Save Changes</button>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <!-- Stats will be dynamically inserted by profile.js -->
+        </div>
+
+        <section class="posts-section">
+            <h2 class="section-title">Your Posts</h2>
+            <div class="content-grid posts-container">
+                <!-- Posts will be dynamically inserted by profile.js -->
+            </div>
+        </section>
+
+        <section class="drafts-section">
+            <h2 class="section-title">Your Drafts</h2>
+            <div class="content-grid drafts-container">
+                <!-- Drafts will be dynamically inserted by profile.js -->
+            </div>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js" type="module"></script>
+    <script src="JS/nav.js" type="module"></script>
+    <script src="JS/profile.js" type="module"></script>
+</body>
+</html>

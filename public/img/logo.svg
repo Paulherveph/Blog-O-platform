@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150" height="50" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;display=swap');
+    
+    .logo-text { 
+      font-family: 'Poppins', Arial, sans-serif; 
+      font-weight: 600;
+      fill: #1b1b1b;
+      transition: fill 0.3s ease;
+    }
+    
+    .accent-circle {
+      fill: #ff6b6b;
+      transition: fill 0.3s ease;
+    }
+    
+    .ring {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2;
+      opacity: 0.3;
+      transition: stroke 0.3s ease;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .logo-text {
+        fill: #ffffff;
+      }
+      .accent-circle {
+        fill: #bb86fc;
+      }
+      .ring {
+        stroke: #2d2d2d;
+      }
+    }
+  </style>
+  
+  <text x="10" y="35" class="logo-text" font-size="32">Blog</text>
+  <circle cx="120" cy="25" r="15" class="accent-circle"/>
+  <circle cx="120" cy="25" r="12" class="ring"/>
+  
+  <!-- Add subtle animation on hover -->
+  <script type="text/javascript">
+    <![CDATA[
+    document.currentScript.closest('svg').addEventListener('mouseover', function() {
+      const circle = this.querySelector('.accent-circle');
+      circle.style.transform = 'scale(1.1)';
+      circle.style.transition = 'transform 0.3s ease';
+    });
+    
+    document.currentScript.closest('svg').addEventListener('mouseout', function() {
+      const circle = this.querySelector('.accent-circle');
+      circle.style.transform = 'scale(1)';
+    });
+    ]]>
+  </script>
+</svg>

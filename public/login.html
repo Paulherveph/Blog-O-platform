@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register | Blogging Platform</title>
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+    <link rel="stylesheet" href="CSS/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="/img/logo.svg" class="logo" alt="Blog P">
+    </header>
+    <div class="container">
+        <div class="forms-container">
+            <div class="forms-wrapper">
+                <!-- Login Form -->
+                <div class="form-panel" id="loginForm">
+                    <h2>Welcome Back</h2>
+                    <p class="form-subtitle">Please login to continue</p>
+                    <form id="loginFormElement">
+                        <div class="input-group">
+                            <input type="email" id="loginEmail" required>
+                            <label>Email Address</label>
+                            <span class="input-highlight"></span>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="loginPassword" required>
+                            <label>Password</label>
+                            <span class="input-highlight"></span>
+                        </div>
+                        <div class="form-footer">
+                            <label class="remember-me">
+                                <input type="checkbox" id="remember">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="submit-btn">Sign In</button>
+                        <p class="switch-form-text">
+                            Don't have an account? 
+                            <a href="#" id="showRegister">Register</a>
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Register Form -->
+                <div class="form-panel" id="registerForm">
+                    <h2>Create Account</h2>
+                    <p class="form-subtitle">Start your blogging journey</p>
+                    <form id="registerFormElement">
+                        <div class="input-group">
+                            <input type="email" id="registerEmail" required>
+                            <label>Email Address</label>
+                            <span class="input-highlight"></span>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="registerPassword" required>
+                            <label>Create Password</label>
+                            <span class="input-highlight"></span>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="confirmPassword" required>
+                            <label>Confirm Password</label>
+                            <span class="input-highlight"></span>
+                        </div>
+                        <button type="submit" class="submit-btn">Create Account</button>
+                        <p class="switch-form-text">
+                            Already have an account? 
+                            <a href="#" id="showLogin">Login</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog : Editor</title>
+  <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="/css/editor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/img/logo.svg" class="logo" alt="Blog Platform Logo">
+    <ul class="links-container">
+      <li class="link-item"><a href="/" class="link">home</a></li>
+      <li class="link-item"><a href="/editor" class="link">editor</a></li>
+    </ul>
+  </nav>
+  
+  <div class="banner">
+    <input type="file" accept="image/*" id="banner-upload" hidden>
+    <label for="banner-upload" class="banner-upload-btn"><img src="/img/upload.svg" alt="upload banner">
+    </label>
+  </div>
+
+  <div class="blog">
+    <textarea class="title" placeholder="Title......"></textarea>
+    
+    <div class="editor-toolbar">
+      <!-- Text Formatting -->
+      <button type="button" data-command="bold" title="Bold"><i class="fas fa-bold"></i></button>
+      <button type="button" data-command="italic" title="Italic"><i class="fas fa-italic"></i></button>
+      <button type="button" data-command="underline" title="Underline"><i class="fas fa-underline"></i></button>
+      <button type="button" data-command="strikethrough" title="Strikethrough"><i class="fas fa-strikethrough"></i></button>
+      <span class="separator">|</span>
+      
+      <!-- Text Style -->
+      <select class="font-family-select" title="Font Family">
+        <option value="Arial">Arial</option>
+        <option value="Calibri">Calibri</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Courier New">Courier New</option>
+      </select>
+      <select class="font-size-select" title="Font Size">
+        <option value="1">8pt</option>
+        <option value="2">10pt</option>
+        <option value="3" selected>12pt</option>
+        <option value="4">14pt</option>
+        <option value="5">18pt</option>
+        <option value="6">24pt</option>
+        <option value="7">36pt</option>
+      </select>
+      <input type="color" id="text-color" title="Text Color" value="#000000">
+      <span class="separator">|</span>
+      
+      <!-- Headings -->
+      <button type="button" data-command="h1" title="Heading 1"><i class="fas fa-heading"></i>1</button>
+      <button type="button" data-command="h2" title="Heading 2"><i class="fas fa-heading"></i>2</button>
+      <button type="button" data-command="h3" title="Heading 3"><i class="fas fa-heading"></i>3</button>
+      <span class="separator">|</span>
+      
+      <!-- Alignment -->
+      <button type="button" data-command="justifyLeft" title="Align Left"><i class="fas fa-align-left"></i></button>
+      <button type="button" data-command="justifyCenter" title="Align Center"><i class="fas fa-align-center"></i></button>
+      <button type="button" data-command="justifyRight" title="Align Right"><i class="fas fa-align-right"></i></button>
+      <button type="button" data-command="justifyFull" title="Justify"><i class="fas fa-align-justify"></i></button>
+      <span class="separator">|</span>
+      
+      <!-- Lists and Indentation -->
+      <button type="button" data-command="insertUnorderedList" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+      <button type="button" data-command="insertOrderedList" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+      <button type="button" data-command="indent" title="Increase Indent"><i class="fas fa-indent"></i></button>
+      <button type="button" data-command="outdent" title="Decrease Indent"><i class="fas fa-outdent"></i></button>
+      <span class="separator">|</span>
+      
+      <!-- Advanced Formatting -->
+      <button type="button" data-command="format-quote" title="Quote"><i class="fas fa-quote-right"></i></button>
+      <button type="button" data-command="format-code" title="Code"><i class="fas fa-code"></i></button>
+      <button type="button" data-command="format-highlight" title="Highlight"><i class="fas fa-highlighter"></i></button>
+      <button type="button" data-command="removeFormat" title="Clear Formatting"><i class="fas fa-remove-format"></i></button>
+      <span class="separator">|</span>
+      
+      <!-- Links and Media -->
+      <button type="button" data-command="createLink" title="Insert Link"><i class="fas fa-link"></i></button>
+      <button type="button" data-command="unlink" title="Remove Link"><i class="fas fa-unlink"></i></button>
+      <button type="button" id="insert-image-btn" title="Insert Image"><i class="fas fa-image"></i></button>
+    </div>
+
+    <div id="editor" class="article" contenteditable="true" placeholder="Start writing here..."></div>
+    
+    <div class="formatting-tips">
+      <h4>Formatting Tips:</h4>
+      <ul>
+        <li>Use headings to organize your content</li>
+        <li>Add images to make your blog more engaging</li>
+        <li>Use lists to break down information</li>
+        <li>Highlight important points in bold</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="blog-options">
+    <button class="btn dark publish-btn">Publish</button>
+    <input type="file" accept="image/*" id="image-upload" hidden>
+    <label for="image-upload" class="btn gray upload-btn">Upload Image</label>
+    <div id="imagePreviewContainer" style="display: none;"></div>
+  </div>
+  
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>  
+  <script type="module" src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+  <script type="module" src="/js/firebase.js"></script>
+  <script type="module" src="/js/editor.js"></script>
+</body>
+</html>
