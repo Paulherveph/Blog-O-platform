@@ -122,14 +122,6 @@ server.js
 - `npm run dev`: Start development server
 - `npm run prod`: Start production server with production settings
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/NiceFeature`)
-3. Commit your changes (`git commit -m 'I Added a nice Feature'`)
-4. Push to the branch (`git push origin feature/NiceFeature`)
-5. Open a Pull Request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
