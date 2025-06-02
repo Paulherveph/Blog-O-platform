@@ -1,0 +1,154 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const auth = window.auth;
+  const db = window.db;
+
+  const ui = new firebaseui.auth.AuthUI(auth);
+
+  const uiConfig = {
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        document.querySelector('.login').style.display = "none";
+        getUserWrittenBlogs();
+        return false;
+      },
+      uiShown: function() {
+        document.getElementById('loader').style.display = 'none';
+      }
+    },
+    signInFlow: 'popup',
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    tosUrl: '<your-tos-url>',
+    privacyPolicyUrl: '<your-privacy-policy-url>'
+  };
+
+  ui.start('#firebaseui-auth-container', uiConfig);
+
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      document.querySelector('.login').style.display = "none";
+      getUserWrittenBlogs();
+    } else {
+      document.querySelector('.login').style.display = "flex";
+    }
+  });
+
+  const getUserWrittenBlogs = () => {
+    db.collection("blogs").where("author", "==", auth.currentUser.email.split('@')[0])
+      .get()
+      .then((blogs) => {
+        const blogSection = document.querySelector('.blogs-section');
+        blogs.forEach((blog) => {
+          createBlog(blog, blogSection);
+        });
+      })
+      .catch((error) => {
+        console.error("Error getting user's blogs:", error);
+      });
+  };
+
+  const createBlog = (blog, blogSection) => {
+    const data = blog.data();
+    blogSection.innerHTML += `
+      <div class="blog-card">
+        <img src="${data.bannerImage}" class="blog-image" alt="Blog Banner">
+        <h1 class="blog-title">${data.title.substring(0, 100) + '...'}</h1>
+        <p class="blog-overview">${data.article.substring(0, 200) + '...'}</p>
+        <a href="/${blog.id}" class="btn dark">read</a>
+        <a href="/${blog.id}/editor" class="btn grey">edit</a>
+        <a href="#" onclick="deleteBlog('${blog.id}')" class="btn danger">delete</a>
+      </div>
+    `;
+  };
+
+  const deleteBlog = (id) => {
+    if (confirm("Are you sure you want to delete this blog?")) {
+      db.collection("blogs").doc(id).delete()
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => {
+          console.error("Error deleting blog:", error);
+        });
+    }
+  };
+});
+document.addEventListener('DOMContentLoaded', function () {
+  const auth = window.auth;
+  const db = window.db;
+
+  const ui = new firebaseui.auth.AuthUI(auth);
+
+  const uiConfig = {
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        document.querySelector('.login').style.display = "none";
+        getUserWrittenBlogs();
+        return false;
+      },
+      uiShown: function() {
+        document.getElementById('loader').style.display = 'none';
+      }
+    },
+    signInFlow: 'popup',
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    tosUrl: '<your-tos-url>',
+    privacyPolicyUrl: '<your-privacy-policy-url>'
+  };
+
+  ui.start('#firebaseui-auth-container', uiConfig);
+
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      document.querySelector('.login').style.display = "none";
+      getUserWrittenBlogs();
+    } else {
+      document.querySelector('.login').style.display = "flex";
+    }
+  });
+
+  const getUserWrittenBlogs = () => {
+    db.collection("blogs").where("author", "==", auth.currentUser.email.split('@')[0])
+      .get()
+      .then((blogs) => {
+        const blogSection = document.querySelector('.blogs-section');
+        blogs.forEach((blog) => {
+          createBlog(blog, blogSection);
+        });
+      })
+      .catch((error) => {
+        console.error("Error getting user's blogs:", error);
+      });
+  };
+
+  const createBlog = (blog, blogSection) => {
+    const data = blog.data();
+    blogSection.innerHTML += `
+      <div class="blog-card">
+        <img src="${data.bannerImage}" class="blog-image" alt="Blog Banner">
+        <h1 class="blog-title">${data.title.substring(0, 100) + '...'}</h1>
+        <p class="blog-overview">${data.article.substring(0, 200) + '...'}</p>
+        <a href="/${blog.id}" class="btn dark">read</a>
+        <a href="/${blog.id}/editor" class="btn grey">edit</a>
+        <a href="#" onclick="deleteBlog('${blog.id}')" class="btn danger">delete</a>
+      </div>
+    `;
+  };
+
+  const deleteBlog = (id) => {
+    if (confirm("Are you sure you want to delete this blog?")) {
+      db.collection("blogs").doc(id).delete()
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => {
+          console.error("Error deleting blog:", error);
+        });
+    }
+  };
+});
